@@ -1,0 +1,13 @@
+<form method="post" asp-action="Registrar">
+    <select name="tipo">
+        <option value="estudiante">Estudiante</option>
+        <option value="profesor">Profesor</option>
+    </select>
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="clave" placeholder="Contraseña" required />
+    <button type="submit">Registrar</button>
+</form>
+@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+{
+    <div class="alert alert-danger">@error.ErrorMessage</div>
+}

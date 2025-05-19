@@ -1,0 +1,30 @@
+@model StudentRegWebApp.Models.EstudianteMaterias
+
+@{
+    ViewData["Title"] = "Asignar Materia a Estudiante";
+    var estudiantes = ViewBag.Estudiantes as List<StudentRegWebApp.Models.Estudiante>;
+    var materias = ViewBag.Materias as List<StudentRegWebApp.Models.Materia>;
+}
+
+<h2>Asignar Materia a Estudiante</h2>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<form asp-action="Asignar" method="post">
+    <div class="form-group">
+        <label>Estudiante</label>
+        <select asp-for="EstudianteId" class="form-control" asp-items="@(new SelectList(estudiantes, "Id", "Nombre"))">
+            <option value="">Seleccione un estudiante</option>
+        </select>
+        <span asp-validation-for="EstudianteId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Materia</label>
+        <select asp-for="MateriaId" class="form-control" asp-items="@(new SelectList(materias, "Id", "Nombre"))">
+            <option value="">Seleccione una materia</option>
+        </select>
+        <span asp-validation-for="MateriaId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Asignar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

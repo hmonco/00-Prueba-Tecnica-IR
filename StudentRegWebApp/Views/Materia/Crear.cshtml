@@ -1,0 +1,34 @@
+@model StudentRegWebApp.Models.Materia
+
+@{
+    ViewData["Title"] = "Crear Materia";
+    var profesores = ViewBag.Profesores as List<StudentRegWebApp.Models.Profesor>;
+}
+
+<h2>Crear Materia</h2>
+
+<form asp-action="Crear" method="post">
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Créditos</label>
+        <input asp-for="Creditos" class="form-control" />
+        <span asp-validation-for="Creditos" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Profesor</label>
+        <select asp-for="ProfesorId" class="form-control" asp-items="@(new SelectList(profesores, "Id", "Nombre"))">
+            <option value="">Seleccione un profesor</option>
+        </select>
+        <span asp-validation-for="ProfesorId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Crear</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>
+@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+{
+    <div class="alert alert-danger">@error.ErrorMessage</div>
+}

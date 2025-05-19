@@ -1,0 +1,17 @@
+@model StudentRegWebApp.Models.Materia
+
+@{
+    ViewData["Title"] = "Detalles de la Materia";
+}
+
+<h2>Detalles de la Materia</h2>
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.Nombre</dd>
+    <dt class="col-sm-3">Créditos</dt>
+    <dd class="col-sm-9">@Model.Creditos</dd>
+    <dt class="col-sm-3">Profesor</dt>
+    <dd class="col-sm-9">@Model.Profesor?.Nombre</dd>
+</dl>
+<a asp-action="Index" class="btn btn-secondary">Volver</a>

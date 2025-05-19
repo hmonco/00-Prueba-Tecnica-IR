@@ -1,0 +1,30 @@
+@model IEnumerable<StudentRegWebApp.Models.Profesor>
+
+@{
+    ViewData["Title"] = "Profesores";
+}
+
+<h2>Profesores</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var profesor in Model)
+    {
+        <tr>
+            <td>@profesor.Nombre</td>
+            <td>
+                <a asp-action="Detalles" asp-route-id="@profesor.Id">Detalles</a> |
+                <a asp-action="Editar" asp-route-id="@profesor.Id">Editar</a> |
+                <a asp-action="Eliminar" asp-route-id="@profesor.Id">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<a asp-action="Crear" class="btn btn-primary">Nuevo Profesor</a>

@@ -1,0 +1,12 @@
+@if (TempData["RegistroExitoso"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["RegistroExitoso"]
+    </div>
+}
+
+<form method="post" asp-action="Login">
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="password" name="clave" placeholder="Contraseña" required />
+    <button type="submit">Iniciar sesión</button>
+</form>

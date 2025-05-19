@@ -1,0 +1,19 @@
+@model StudentRegWebApp.Models.Profesor
+
+@{
+    ViewData["Title"] = "Editar Profesor";
+}
+
+<h2>Editar Profesor</h2>
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="UsuarioId" />
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

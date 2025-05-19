@@ -1,0 +1,31 @@
+@model StudentRegWebApp.Models.Materia
+
+@{
+    ViewData["Title"] = "Editar Materia";
+    var profesores = ViewBag.Profesores as List<StudentRegWebApp.Models.Profesor>;
+}
+
+<h2>Editar Materia</h2>
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Créditos</label>
+        <input asp-for="Creditos" class="form-control" />
+        <span asp-validation-for="Creditos" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Profesor</label>
+        <select asp-for="ProfesorId" class="form-control" asp-items="@(new SelectList(profesores, "Id", "Nombre", Model.ProfesorId))">
+            <option value="">Seleccione un profesor</option>
+        </select>
+        <span asp-validation-for="ProfesorId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

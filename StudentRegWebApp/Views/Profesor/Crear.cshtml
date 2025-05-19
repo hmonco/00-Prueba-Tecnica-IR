@@ -1,0 +1,19 @@
+@model StudentRegWebApp.Models.Profesor
+
+@{
+    ViewData["Title"] = "Crear Profesor";
+    var usuario = ViewBag.Usuario as StudentRegWebApp.Models.Usuario;
+}
+
+<h2>Complementar Información Profesor</h2>
+
+<form asp-action="Crear" method="post">
+    <input type="hidden" name="UsuarioId" value="@usuario?.Id" />
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Crear</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

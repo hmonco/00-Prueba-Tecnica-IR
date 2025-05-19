@@ -1,0 +1,39 @@
+@model StudentRegWebApp.Models.Estudiante
+
+@{
+    ViewData["Title"] = "Crear Estudiante";
+    var programas = ViewBag.Programas as List<StudentRegWebApp.Models.ProgramaCreditos>;
+    var usuario = ViewBag.Usuario as StudentRegWebApp.Models.Usuario;
+}
+
+<h2>Crear Estudiante</h2>
+
+@if (usuario != null)
+{
+    <div class="alert alert-info">
+        Registrando estudiante para el usuario: <strong>@usuario.Email</strong>
+    </div>
+}
+
+<form asp-action="Crear" method="post">
+    <input type="hidden" name="UsuarioId" value="@usuario?.Id" />
+    <div class="form-group">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Número de Documento</label>
+        <input asp-for="NumeroDocumento" class="form-control" />
+        <span asp-validation-for="NumeroDocumento" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Programa de Créditos</label>
+        <select asp-for="ProgramaCreditosId" class="form-control" asp-items="@(new SelectList(programas, "Id", "Nombre"))">
+            <option value="">Seleccione un programa</option>
+        </select>
+        <span asp-validation-for="ProgramaCreditosId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Crear</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

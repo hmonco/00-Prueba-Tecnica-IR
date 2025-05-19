@@ -1,0 +1,19 @@
+@model StudentRegWebApp.Models.Estudiante
+
+@{
+    ViewData["Title"] = "Eliminar Estudiante";
+}
+
+<h2>¿Estás seguro de eliminar este estudiante?</h2>
+
+<div>
+    <h4>@Model.Nombre</h4>
+    <p>Número de Documento: @Model.NumeroDocumento</p>
+    <p>Programa de Créditos: @Model.ProgramaCreditos?.Nombre</p>
+</div>
+
+<form asp-action="Eliminar" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

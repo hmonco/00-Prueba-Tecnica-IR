@@ -1,0 +1,30 @@
+@model IEnumerable<StudentRegWebApp.Models.EstudianteMaterias>
+
+@{
+    ViewData["Title"] = "Asignaciones de Materias a Estudiantes";
+}
+
+<h2>Asignaciones de Materias a Estudiantes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Estudiante</th>
+            <th>Materia</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var asignacion in Model)
+    {
+        <tr>
+            <td>@asignacion.Estudiante?.Nombre</td>
+            <td>@asignacion.Materia?.Nombre</td>
+            <td>
+                <a asp-action="Eliminar" asp-route-id="@asignacion.Id">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<a asp-action="Asignar" class="btn btn-primary">Asignar Materia a Estudiante</a>
